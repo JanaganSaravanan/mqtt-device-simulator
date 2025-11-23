@@ -7,7 +7,7 @@ PORT = 1883
 USERNAME = "admin"
 PASSWORD = "admin123"
 
-# Store latest device state
+# Store latest device state.
 device_state = {}
 
 # -------------------------------------------------------------------
