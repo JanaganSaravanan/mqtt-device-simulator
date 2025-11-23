@@ -1,0 +1,22 @@
+1. Install mosquitto mqtt on Mac:
+    - brew install mosquitto
+    - brew services start mqtt (run in background and restart)
+    - /opt/homebrew/opt/mosquitto/sbin/mosquitto -c /opt/homebrew/etc/mosquitto/mosquitto.conf (just run directly)
+
+2. Configure Mosquitto (Security, Persistence) in mosquitto.conf:
+    - persistence true
+    - persistence_location /opt/homebrew/var/lib/mosquitto/
+
+3. Create user and password for MQTT broker:
+    Set permission for user
+    - sudo chown :staff /opt/homebrew/etc/mosquitto/passwd
+    - sudo chmod 640 /opt/homebrew/etc/mosquitto/passwd
+    Terminal run
+    - mosquitto_passwd -c /opt/homebrew/etc/mosquitto/passwd myuser
+    In conf file
+    - allow_anonymous false
+    - password_file /opt/homebrew/etc/mosquitto/passwd
+    - listener 1883
+
+4. Test MQTT broker:
+    - mosquitto_pub -h localhost -u myuser -P mypass -t "test/dev" -m "hey"
